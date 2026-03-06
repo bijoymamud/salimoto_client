@@ -400,8 +400,10 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
     FiArrowLeft, FiExternalLink, FiUpload,
-    FiTrash2, FiVideo, FiInfo, FiClock, FiCalendar
+    FiTrash2, FiVideo
 } from "react-icons/fi";
+import { FaArrowUpRightFromSquare } from "react-icons/fa6";
+
 
 export default function VideoForm() {
     const { id } = useParams();
@@ -435,14 +437,18 @@ export default function VideoForm() {
     }, [id, isEdit]);
 
     return (
-        <div className="min-h-screen bg-[#F9FAFB] p-6 lg:p-10  text-[#1F1F1F]">
+        <div className="min-h-screen bg-[#F9FAFB] text-[#1F1F1F]">
             {/* Page Header */}
-            <div className=" mx-auto mb-8">
-                <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-gray-400 hover:text-gray-700 mb-2 transition-all">
+            <div className=" mx-auto flex items-center justify-between mb-8">
+
+                <div>
+                    <h1 className="text-[24px] font-bold">{isEdit ? "Edit Video" : "Add New Video"}</h1>
+                    <p className="text-gray-400 text-sm">Add video via YouTube link with metadata</p>
+                </div>
+                <button onClick={() => navigate(-1)} className="bg-gradient-to-b shadow-md flex items-center py-3 gap-2 from-[#18D1E3] to-[#4CA7EB] text-white shadow-lg px-8 py-2 text-sm font-semibold rounded-full hover:cursor-pointer">
                     <FiArrowLeft size={18} /> <span className="text-sm font-medium">Back</span>
                 </button>
-                <h1 className="text-[28px] font-bold">{isEdit ? "Edit Video" : "Add New Video"}</h1>
-                <p className="text-gray-400 text-sm">Add video via YouTube link with metadata</p>
+
             </div>
 
             <div className=" mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -453,7 +459,7 @@ export default function VideoForm() {
                     {/* Thumbnail Preview (Only shown in Edit Mode or if URL exists) */}
                     {isEdit && (
                         <div className="bg-white rounded-[24px] p-6 border border-gray-100 shadow-sm">
-                            <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-4">Thumbnail Preview</p>
+                            <p className="text-[14px] font-bold text-[#1F1F1F] uppercase tracking-widest mb-4">Thumbnail Preview</p>
                             <div className="relative rounded-2xl overflow-hidden aspect-video shadow-inner">
                                 <img src={formData.thumbnailUrl} className="w-full h-full object-cover" alt="Preview" />
                             </div>
@@ -463,12 +469,12 @@ export default function VideoForm() {
                     {/* Form Content */}
                     <div className="bg-white rounded-[24px] p-8 border border-gray-100 shadow-sm space-y-6">
                         <div>
-                            <label className="block text-[13px] font-bold mb-2">Video Title *</label>
+                            <label className="block text-[14px] font-bold mb-2">Video Title *</label>
                             <input type="text" className="w-full px-4 py-3 bg-[#F4F7FA] rounded-xl border-none outline-none focus:ring-2 focus:ring-purple-100 transition-all" placeholder="Enter video title" value={formData.title} />
                         </div>
 
                         <div>
-                            <label className="block text-[13px] font-bold mb-2">Video URL *</label>
+                            <label className="block text-[14px] font-bold mb-2">Video URL *</label>
                             <div className="relative">
                                 <input type="text" className="w-full px-4 py-3 bg-[#F4F7FA] rounded-xl border-none outline-none pr-12" placeholder="https://youtube.com/watch?v=..." value={formData.url} />
                                 <FiExternalLink className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400" />
@@ -477,19 +483,19 @@ export default function VideoForm() {
                         </div>
 
                         <div>
-                            <label className="block text-[13px] font-bold mb-2">Category *</label>
+                            <label className="block text-[14px] font-bold mb-2">Category *</label>
                             <select className="w-full px-4 py-3 bg-[#F4F7FA] rounded-xl border-none outline-none appearance-none">
                                 <option>{formData.category || "Select category"}</option>
                             </select>
                         </div>
 
                         <div>
-                            <label className="block text-[13px] font-bold mb-2">Description</label>
+                            <label className="block text-[14px] font-bold mb-2">Description</label>
                             <textarea rows="5" className="w-full px-4 py-3 bg-[#F4F7FA] rounded-xl border-none outline-none resize-none" placeholder="Enter video description..." value={formData.description} />
                         </div>
 
                         <div>
-                            <label className="block text-[13px] font-bold mb-2">Custom Thumbnail URL (Optional)</label>
+                            <label className="block text-[14px] font-bold mb-2">Custom Thumbnail URL (Optional)</label>
                             <div className="relative">
                                 <input type="text" className="w-full px-4 py-3 bg-[#F4F7FA] rounded-xl border-none outline-none pr-12" value={formData.thumbnailUrl} />
                                 <FiUpload className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400" />
@@ -498,7 +504,7 @@ export default function VideoForm() {
                         </div>
 
                         <div>
-                            <label className="block text-[13px] font-bold mb-2">Duration (mm:ss)</label>
+                            <label className="block text-[14px] font-bold mb-2">Duration (mm:ss)</label>
                             <input type="text" readOnly className="w-full px-4 py-3 bg-[#F4F7FA] rounded-xl border-none text-gray-400 outline-none" value={formData.duration} />
                             <p className="text-[11px] text-gray-400 mt-1">Optional: Auto-detected from YouTube</p>
                         </div>
@@ -507,19 +513,19 @@ export default function VideoForm() {
                     {/* Video Stats (Only in Edit Mode) */}
                     {isEdit && (
                         <div className="bg-white rounded-[24px] p-8 border border-gray-100 shadow-sm">
-                            <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-6">Video Statistics</p>
+                            <p className="text-[14px] font-bold text-gray-400 uppercase tracking-widest mb-6">Video Statistics</p>
                             <div className="grid grid-cols-3 gap-4">
                                 <div className="text-center">
                                     <p className="text-2xl font-bold">15,234</p>
-                                    <p className="text-[11px] text-gray-400">Total Views</p>
+                                    <p className="text-[14px] text-gray-400">Total Views</p>
                                 </div>
                                 <div className="text-center border-x border-gray-100">
                                     <p className="text-2xl font-bold">2,547</p>
-                                    <p className="text-[11px] text-gray-400">Total Likes</p>
+                                    <p className="text-[14px] text-gray-400">Total Likes</p>
                                 </div>
                                 <div className="text-center">
                                     <p className="text-2xl font-bold">489</p>
-                                    <p className="text-[11px] text-gray-400">Total Shares</p>
+                                    <p className="text-[14px] text-gray-400">Total Shares</p>
                                 </div>
                             </div>
                         </div>
@@ -529,23 +535,15 @@ export default function VideoForm() {
                 {/* RIGHT COLUMN: SIDEBAR */}
                 <div className="lg:col-span-4 space-y-6 lg:sticky lg:top-10">
 
-                    {/* Action Buttons */}
-                    <div className="bg-white p-6 rounded-[24px] border border-gray-100 shadow-sm space-y-3 text-center">
-                        <button className="w-full flex items-center justify-center gap-2 py-4 bg-[#8C60F5] text-white rounded-full font-bold shadow-lg shadow-purple-100 hover:opacity-90 transition-all">
-                            <FiVideo /> {isEdit ? "Save Changes" : "Save as Draft"}
-                        </button>
-                        <button onClick={() => navigate(-1)} className="w-full py-4 bg-[#F8F9FA] text-gray-500 rounded-full font-bold hover:bg-gray-100 transition-all">
-                            Cancel
-                        </button>
-                    </div>
+
 
                     {/* Publish Settings */}
                     <div className="bg-white p-6 rounded-[24px] border border-gray-100 shadow-sm space-y-6">
-                        <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest">Publish Settings</h3>
+                        <h3 className="text-[14px] font-bold text-gray-400 uppercase tracking-widest">Publish Settings</h3>
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-[13px] font-bold">Publish Video</p>
-                                <p className="text-[11px] text-gray-400">Make video visible to users</p>
+                                <p className="!text-[14px] !font-bold">Publish Video</p>
+                                <p className="text-[14px] text-gray-400">Make video visible to users</p>
                             </div>
                             <label className="relative inline-flex items-center cursor-pointer">
                                 <input type="checkbox" className="sr-only peer" checked={formData.isPublished} onChange={(e) => setFormData({ ...formData, isPublished: e.target.checked })} />
@@ -553,31 +551,43 @@ export default function VideoForm() {
                             </label>
                         </div>
                         <div>
-                            <label className="block text-[13px] font-bold mb-2">Schedule Publication</label>
-                            <input type="date" className="w-full px-4 py-3 bg-[#F4F7FA] rounded-xl border-none text-sm text-gray-400 outline-none" />
-                            <p className="text-[11px] text-gray-400 mt-1">Optional: Set future publish date</p>
+                            <label className="block text-[14px] font-bold mb-2">Schedule Publication</label>
+                            <input type="date" className="w-full px-4 py-3 bg-[#F4F7FA] rounded-xl border-none text-[14px] text-gray-400 outline-none" />
+                            <p className="text-[14px] text-gray-400 mt-1">Optional: Set future publish date</p>
                         </div>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="bg-white p-6 rounded-[24px] border border-gray-100  shadow-sm space-y-3 text-center">
+                        <button className="w-full flex items-center justify-center gap-2 py-4 bg-[#8C60F5] text-white rounded-full font-medium shadow-lg shadow-purple-100 hover:opacity-90 transition-all">
+                            <FiVideo size={18} /> {isEdit ? "Save Changes" : "Save as Draft"}
+                        </button>
+                        <button onClick={() => navigate(-1)} className="w-full py-4 bg-[#F8F9FA] text-gray-500 rounded-full border-2 font-bold hover:bg-gray-100 transition-all">
+                            Cancel
+                        </button>
                     </div>
 
                     {/* Danger Zone (Edit Only) */}
                     {isEdit && (
-                        <div className="bg-[#FFF5F5] p-6 rounded-[24px] border border-red-50">
-                            <h3 className="text-xs font-bold text-red-400 uppercase mb-4 tracking-widest">Danger Zone</h3>
-                            <p className="text-[11px] text-red-400/80 mb-4 leading-relaxed">Once you delete a video, there is no going back. Please be certain.</p>
-                            <button className="w-full flex items-center justify-center gap-2 py-4 bg-[#FF3B30] text-white rounded-full font-bold shadow-lg shadow-red-100 hover:bg-red-600 transition-all">
-                                <FiTrash2 /> Delete Video
+                        <div className="bg-[#EF4444]/5 p-6 rounded-[24px] border border-[#EF44440D]">
+                            <h3 className="text-[14px] font-bold text-[#E7000B] uppercase mb-2 tracking-widest">Danger Zone</h3>
+                            <p className="text-[12px] text-[#4A5565] mb-4 leading-relaxed">Once you delete a video, there is no going back. Please be certain.</p>
+                            <button className="w-full flex items-center justify-center gap-2 py-4 bg-[#FF0F1A] text-white rounded-full font-semibold shadow-lg shadow-red-100 hover:bg-red-600 transition-all">
+                                <FiTrash2 size={20} className="mb-1" /> Delete Video
                             </button>
                         </div>
                     )}
 
                     {/* Helper Note */}
-                    <div className="bg-[#F0F7FF] p-6 rounded-[24px] border border-blue-50 flex gap-3">
-                        <FiInfo className="text-blue-500 mt-1" size={20} />
-                        <div className="space-y-1">
-                            <p className="text-[13px] font-bold text-blue-900">YouTube Integration</p>
-                            <p className="text-[11px] text-blue-800/70 leading-relaxed">Videos are embedded from YouTube. Ensure the video is public or unlisted.</p>
+                    {isEdit && (
+                        <div className="bg-[#F0F7FF] p-6 rounded-[24px] border border-blue-50 flex gap-3">
+                            <FaArrowUpRightFromSquare className="text-blue-500 mt-1" size={14} />
+                            <div className="space-y-1">
+                                <p className="text-[14px] font-bold text-[#4CA7EB]">YouTube Integration</p>
+                                <p className="text-[12px] text-[#4A5565] leading-relaxed">Videos are embedded from YouTube. <br /> Ensure the video is public or unlisted. <br /> Stats are tracked separately in the admin panel.</p>
+                            </div>
                         </div>
-                    </div>
+                    )}
                 </div>
             </div>
         </div>

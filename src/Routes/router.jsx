@@ -5,8 +5,8 @@ import NotFound from "../Pages/NotFound/NotFound";
 import { AdminHome } from "../Pages/Dashboard/AdminHome/AdminHome";
 import AudioLibrary from "../Pages/Dashboard/AudioLibrary";
 import Category from "../Pages/Dashboard/Category";
+import Settings from "../Pages/Dashboard/Settings";
 import DuaManagement from "../Pages/Dashboard/DuaManagement";
-import { Settings } from "../Pages/Dashboard/Settings";
 import { RecentContentDetails } from "../Pages/Dashboard/AdminHome/RecentContentDetails";
 import DuaForm from "../Pages/Dashboard/AdminHome/DuaForm";
 import { AuthGuard } from "../components/AuthGuard";
@@ -16,6 +16,7 @@ import { HadithDetails } from "../Pages/Dashboard/AdminHome/HadidManagement/Hadi
 import VideoLibrary from "../Pages/Dashboard/VideoLibrary/VideoLibrary";
 import VideoDetails from "../Pages/Dashboard/VideoLibrary/VideoDetails";
 import VideoForm from "../Pages/Dashboard/VideoLibrary/VideoForm";
+import { MediaAds } from "../Pages/Dashboard/MediaAds";
 
 
 
@@ -118,6 +119,10 @@ export const router = createBrowserRouter([
       {
         path: "video_library/edit_video/:id",
         element: <VideoForm />,
+      },
+      {
+        path: "media_ads",
+        element: <MediaAds />,
       },
       {
         path: "categories",

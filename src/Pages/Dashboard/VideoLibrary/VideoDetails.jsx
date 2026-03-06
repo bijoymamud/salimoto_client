@@ -5,10 +5,14 @@ import {
     Users2Icon
 } from 'lucide-react';
 import { FiEdit } from 'react-icons/fi';
-import { useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 
 export default function VideoDetails() {
+    const id = useParams();
+    const location = useLocation()
     const navigate = useNavigate();
+    const video = location.state?.video;
+    console.log(video, 'video from library')
 
     const dailyViews = [
         { date: 'Feb 28', views: 1234, width: '25%' },
@@ -55,9 +59,11 @@ export default function VideoDetails() {
                     <ArrowLeft size={18} className="mr-2" /> Back
                 </button>
                 <div className="flex gap-3">
-                    <button className="flex items-center px-4 py-2 bg-white border border-[#E5E7EB] rounded-full text-sm font-medium hover:bg-slate-50">
+                    <Link
+                        to={`/video_library/edit_video/${video?.id}`}
+                        className="flex items-center px-4 py-2 bg-white border border-[#E5E7EB] rounded-full text-sm font-medium hover:bg-slate-50">
                         <FiEdit size={16} className="mr-2" /> Edit
-                    </button>
+                    </Link>
                     <button className="flex items-center px-4 py-2 bg-white border border-red-100 text-red-500 rounded-full text-sm font-medium hover:bg-red-50">
                         <Trash2 size={16} className="mr-2" /> Delete
                     </button>

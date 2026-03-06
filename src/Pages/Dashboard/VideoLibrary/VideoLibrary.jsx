@@ -1,5 +1,5 @@
 import React from "react";
-import { FiUpload, FiSearch, FiEye, FiThumbsUp, FiShare2, FiVideo, FiEdit3, FiTrash2 } from "react-icons/fi";
+import { FiUpload, FiSearch, FiEye, FiThumbsUp, FiShare2, FiVideo, FiEdit3, FiTrash2, FiEdit } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 const stats = [
@@ -106,36 +106,7 @@ export default function VideoLibrary() {
             </div>
 
             {/* Video Grid */}
-            {/* <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-8">
-                {videos.map((video) => (
-                    <div key={video.id} className="bg-white rounded-[24px] overflow-hidden border border-gray-50 shadow-sm group">
-                        <div className="relative h-56 bg-blue-900 overflow-hidden">
-                            <img src={video.image} alt={video.title} className="w-full h-full object-cover" />
-                            <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all" />
-                        </div>
-                        <div className="p-6 space-y-4">
-                            <h4 className="font-bold text-lg text-gray-800 line-clamp-1">{video.title}</h4>
-                            <div className="flex gap-2">
-                                <span className="px-4 py-1 rounded-full text-[11px] font-medium border border-purple-100 text-purple-500 bg-purple-50">
-                                    {video.category}
-                                </span>
-                                <span className={`px-4 py-1 rounded-full text-[11px] font-medium ${video.status === 'Published' ? 'bg-green-50 text-green-500' : 'bg-orange-50 text-orange-500'
-                                    }`}>
-                                    {video.status}
-                                </span>
-                            </div>
-                            <div className="flex items-center gap-4 text-xs text-gray-400">
-                                <span className="flex items-center gap-1"><FiEye /> {video.views}</span>
-                                <span className="flex items-center gap-1"><FiThumbsUp /> {video.likes}</span>
-                                <span className="flex items-center gap-1"><FiShare2 /> {video.shares}</span>
-                            </div>
-                            <Link to={`/video_library/video_details/${video.id}`} className="bg-gradient-to-b shadow-md py-3 text-base text-center mx-auto flex items-center justify-center gap-2 w-full !text-[16px] from-[#18D1E3] to-[#4CA7EB] text-white shadow-lg px-8 py-2 font-semibold rounded-full hover:cursor-pointer">
-                                View Details
-                            </Link>
-                        </div>
-                    </div>
-                ))}
-            </div> */}
+
             <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-8">
                 {videos.map((video) => (
                     <div key={video.id} className="bg-white rounded-[24px] overflow-hidden border border-gray-50 shadow-sm group relative">
@@ -148,7 +119,7 @@ export default function VideoLibrary() {
                                     to={`/video_library/edit_video/${video.id}`}
                                     className="p-3 bg-white text-[#4CA7EB] rounded-full hover:bg-[#4CA7EB] hover:text-white transition-all shadow-xl"
                                 >
-                                    <FiEdit3 size={20} />
+                                    <FiEdit size={20} />
                                 </Link>
                                 <button
                                     className="p-3 bg-white text-red-500 rounded-full hover:bg-red-500 hover:text-white transition-all shadow-xl"
@@ -169,14 +140,15 @@ export default function VideoLibrary() {
                                 </span>
                             </div>
 
-                            <div className="flex gap-4 text-[16px] text-gray-400  pt-4">
+                            <div className="flex items-center gap-4 text-[16px] text-gray-400  pt-4">
                                 <span className="flex items-center gap-1"><FiEye /> {video.views}</span>
                                 <span className="flex items-center gap-1"><FiThumbsUp /> {video.likes}</span>
                                 <span className="flex items-center gap-1"><FiShare2 /> {video.shares}</span>
                             </div>
 
                             <Link
-                                to={`/dashboard/video_library/video_details/${video.id}`}
+                                to={`/video_library/video_details/${video.id}`}
+                                state={{ video }}
                                 className="bg-gradient-to-b shadow-md flex items-center gap-2 py-3 from-[#18D1E3] to-[#4CA7EB] text-white shadow-lg px-8 py-2 text-[18px] flex items-center justify-center font-semibold rounded-full hover:cursor-pointer"
                             >
                                 View Details
