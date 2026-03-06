@@ -15,6 +15,7 @@ import HadithForm from "../Pages/Dashboard/AdminHome/HadidManagement/HadithForm"
 import { HadithDetails } from "../Pages/Dashboard/AdminHome/HadidManagement/HadithDetails";
 import VideoLibrary from "../Pages/Dashboard/VideoLibrary/VideoLibrary";
 import VideoDetails from "../Pages/Dashboard/VideoLibrary/VideoDetails";
+import VideoForm from "../Pages/Dashboard/VideoLibrary/VideoForm";
 
 
 
@@ -100,6 +101,8 @@ export const router = createBrowserRouter([
         path: "audio_library",
         element: <AudioLibrary />,
       },
+
+      //video part section
       {
         path: "video_library",
         element: <VideoLibrary />,
@@ -107,6 +110,14 @@ export const router = createBrowserRouter([
       {
         path: "video_library/video_details/:id",
         element: <VideoDetails />,
+      },
+      {
+        path: "video_library/add_video",
+        element: <VideoForm />,
+      },
+      {
+        path: "video_library/edit_video/:id",
+        element: <VideoForm />,
       },
       {
         path: "categories",

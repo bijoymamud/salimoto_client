@@ -1,5 +1,5 @@
 import React from "react";
-import { FiUpload, FiSearch, FiEye, FiThumbsUp, FiShare2, FiVideo } from "react-icons/fi";
+import { FiUpload, FiSearch, FiEye, FiThumbsUp, FiShare2, FiVideo, FiEdit3, FiTrash2 } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 const stats = [
@@ -40,11 +40,11 @@ export default function VideoLibrary() {
                 <div>
 
                 </div>
-                <button
+                <Link to="/video_library/add_video"
                     className="bg-gradient-to-b shadow-md flex items-center gap-2  from-[#18D1E3] to-[#4CA7EB] text-white shadow-lg px-8 py-2 text-sm font-semibold rounded-full hover:cursor-pointer"
                 >
                     <span className="text-2xl py-2 font-light"><FiUpload className="h-5 w-5" /></span>Upload Video
-                </button>
+                </Link>
             </div>
 
             {/* Stats Cards */}
@@ -106,11 +106,10 @@ export default function VideoLibrary() {
             </div>
 
             {/* Video Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-8">
+            {/* <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-8">
                 {videos.map((video) => (
                     <div key={video.id} className="bg-white rounded-[24px] overflow-hidden border border-gray-50 shadow-sm group">
                         <div className="relative h-56 bg-blue-900 overflow-hidden">
-                            {/* Placeholder for Video Thumbnail */}
                             <img src={video.image} alt={video.title} className="w-full h-full object-cover" />
                             <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all" />
                         </div>
@@ -130,7 +129,56 @@ export default function VideoLibrary() {
                                 <span className="flex items-center gap-1"><FiThumbsUp /> {video.likes}</span>
                                 <span className="flex items-center gap-1"><FiShare2 /> {video.shares}</span>
                             </div>
-                            <Link to={`/video_library/video_details/${video.id}`} className="bg-gradient-to-b shadow-md py-3 text-base text-center mx-auto flex items-center justify-center gap-2 w-full  from-[#18D1E3] to-[#4CA7EB] text-white shadow-lg px-8 py-2 text-sm font-semibold rounded-full hover:cursor-pointer">
+                            <Link to={`/video_library/video_details/${video.id}`} className="bg-gradient-to-b shadow-md py-3 text-base text-center mx-auto flex items-center justify-center gap-2 w-full !text-[16px] from-[#18D1E3] to-[#4CA7EB] text-white shadow-lg px-8 py-2 font-semibold rounded-full hover:cursor-pointer">
+                                View Details
+                            </Link>
+                        </div>
+                    </div>
+                ))}
+            </div> */}
+            <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-8">
+                {videos.map((video) => (
+                    <div key={video.id} className="bg-white rounded-[24px] overflow-hidden border border-gray-50 shadow-sm group relative">
+                        <div className="relative h-80 overflow-hidden">
+                            <img src={video.image} alt={video.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+
+                            {/* Hover Overlay */}
+                            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+                                <Link
+                                    to={`/video_library/edit_video/${video.id}`}
+                                    className="p-3 bg-white text-[#4CA7EB] rounded-full hover:bg-[#4CA7EB] hover:text-white transition-all shadow-xl"
+                                >
+                                    <FiEdit3 size={20} />
+                                </Link>
+                                <button
+                                    className="p-3 bg-white text-red-500 rounded-full hover:bg-red-500 hover:text-white transition-all shadow-xl"
+                                >
+                                    <FiTrash2 size={20} />
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="p-5 space-y-4">
+                            <h4 className="font-bold text-gray-800 truncate text-[18px]">{video.title}</h4>
+                            <div className="flex gap-2">
+                                <span className="px-3 py-1 rounded-full text-[12px] font-bold bg-purple-50 text-purple-500 border border-purple-100 uppercase">
+                                    {video.category}
+                                </span>
+                                <span className={`px-3 py-1 rounded-full text-[12px] font-bold uppercase ${video.status === 'Published' ? 'bg-green-50 text-green-500' : 'bg-gray-100 text-gray-500'}`}>
+                                    {video.status}
+                                </span>
+                            </div>
+
+                            <div className="flex gap-4 text-[16px] text-gray-400  pt-4">
+                                <span className="flex items-center gap-1"><FiEye /> {video.views}</span>
+                                <span className="flex items-center gap-1"><FiThumbsUp /> {video.likes}</span>
+                                <span className="flex items-center gap-1"><FiShare2 /> {video.shares}</span>
+                            </div>
+
+                            <Link
+                                to={`/dashboard/video_library/video_details/${video.id}`}
+                                className="bg-gradient-to-b shadow-md flex items-center gap-2 py-3 from-[#18D1E3] to-[#4CA7EB] text-white shadow-lg px-8 py-2 text-[18px] flex items-center justify-center font-semibold rounded-full hover:cursor-pointer"
+                            >
                                 View Details
                             </Link>
                         </div>

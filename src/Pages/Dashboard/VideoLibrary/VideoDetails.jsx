@@ -1,28 +1,48 @@
-// import React from 'react'
-
-// export const VideoDetails = () => {
-//     return (
-//         <div>VideoDetails</div>
-//     )
-// }
-
-
-import React from 'react';
 import {
-    ArrowLeft, Edit2, Trash2, ExternalLink,
-    TrendingUp, Users, Play, Eye, ThumbsUp, Share2
+    ArrowLeft, Trash2, ExternalLink,
+    TrendingUp, Play, Eye, ThumbsUp, Share2,
+    TrendingUpIcon,
+    Users2Icon
 } from 'lucide-react';
 import { FiEdit } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 
 export default function VideoDetails() {
     const navigate = useNavigate();
+
     const dailyViews = [
         { date: 'Feb 28', views: 1234, width: '25%' },
         { date: 'Mar 1', views: 2156, width: '45%' },
         { date: 'Mar 2', views: 3421, width: '75%' },
         { date: 'Mar 3', views: 4789, width: '100%' },
         { date: 'Mar 4', views: 3634, width: '80%' },
+    ];
+
+    const analyticsStats = [
+        {
+            label: "Engagement Rate",
+            value: "18.5%",
+            icon: <TrendingUpIcon size={24} />,
+            bg: "bg-[#8C60F5]/5",
+            iconBg: "bg-[#8C60F5]/10",
+            color: "text-[#8C60F5]",
+        },
+        {
+            label: "Avg. Watch Time",
+            value: "8:32",
+            icon: <Users2Icon size={24} />,
+            bg: "bg-[#4CA7EB]/5",
+            iconBg: "bg-[#4CA7EB]/10",
+            color: "text-[#4CA7EB]",
+        },
+        {
+            label: "Completion Rate",
+            value: "67%",
+            icon: <Play size={24} />,
+            bg: "bg-[#18D1830D]/5",
+            iconBg: "bg-[#18D1831A]/10",
+            color: "text-[#18D183]",
+        },
     ];
 
     return (
@@ -60,11 +80,7 @@ export default function VideoDetails() {
                                     allowFullScreen
                                 ></iframe>
                             </div>
-                            {/* <div className="absolute inset-0 flex items-center justify-center bg-black/10">
-                                <button className="w-16 h-16 bg-indigo-500/80 rounded-full flex items-center justify-center text-white backdrop-blur-sm hover:scale-105 transition">
-                                    <Play fill="currentColor" size={28} className="ml-1" />
-                                </button>
-                            </div> */}
+
                         </div>
 
                         <div className="p-6">
@@ -77,7 +93,7 @@ export default function VideoDetails() {
                                         <span className="text-slate-400 text-sm ml-2">12:45</span>
                                     </div>
                                 </div>
-                                <button className="flex items-center px-4 py-3 bg-[#8C60F5] text-white rounded-full text-sm font-medium  shadow-lg">
+                                <button className="flex items-center px-4 py-3 bg-[#8C60F5] text-white rounded-full text-[16px] font-medium  shadow-lg">
                                     <ExternalLink size={18} className="me-2" />  Open in YouTube
                                 </button>
                             </div>
@@ -107,8 +123,8 @@ export default function VideoDetails() {
 
                     {/* Daily Views Chart Card */}
                     <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
-                        <h3 className="flex items-center text-lg font-bold mb-6">
-                            <TrendingUp size={20} className="mr-2 text-indigo-500" /> Daily Views (Last 5 Days)
+                        <h3 className="flex items-center  font-bold mb-6 !text-[20px]">
+                            <TrendingUp size={24} className="mr-2 text-indigo-500 " /> Daily Views (Last 5 Days)
                         </h3>
                         <div className="space-y-4">
                             {dailyViews.map((item) => (
@@ -133,39 +149,28 @@ export default function VideoDetails() {
                     <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
                         <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-6">Performance</h3>
 
-                        <div className="space-y-4">
-                            {/* Engagement Rate */}
-                            <div className="flex items-center p-4 bg-[#8C60F50D]/5 rounded-2xl">
-                                <div className="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center text-indigo-600 mr-4">
-                                    <TrendingUp size={24} />
-                                </div>
-                                <div>
-                                    <div className="text-xs text-slate-500 font-medium">Engagement Rate</div>
-                                    <div className="text-xl font-bold text-indigo-600">18.5%</div>
-                                </div>
-                            </div>
+                        <div className="flex flex-col gap-4">
+                            {analyticsStats.map((item, i) => (
+                                <div key={i} className={`flex items-center p-4 py-6 ${item.bg} rounded-2xl`}>
 
-                            {/* Avg. Watch Time */}
-                            <div className="flex items-center p-4 bg-[#4CA7EB0D]/5 rounded-2xl">
-                                <div className="w-12 h-12 bg-sky-100 rounded-xl flex items-center justify-center text-sky-600 mr-4">
-                                    <Users size={24} />
-                                </div>
-                                <div>
-                                    <div className="text-xs text-slate-500 font-medium">Avg. Watch Time</div>
-                                    <div className="text-xl font-bold text-sky-600">8:32</div>
-                                </div>
-                            </div>
+                                    <div
+                                        className={`w-12 h-12 ${item.iconBg} rounded-xl flex items-center justify-center ${item.color} mr-4`}
+                                    >
+                                        {item.icon}
+                                    </div>
 
-                            {/* Completion Rate */}
-                            <div className="flex items-center p-4 bg-[#18D1830D]/5 rounded-2xl">
-                                <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600 mr-4">
-                                    <Play size={24} />
+                                    <div>
+                                        <div className="text-xs text-slate-500 font-medium">
+                                            {item.label}
+                                        </div>
+
+                                        <div className={`text-xl font-bold ${item.color}`}>
+                                            {item.value}
+                                        </div>
+                                    </div>
+
                                 </div>
-                                <div>
-                                    <div className="text-xs text-slate-500 font-medium">Completion Rate</div>
-                                    <div className="text-xl font-bold text-emerald-600">67%</div>
-                                </div>
-                            </div>
+                            ))}
                         </div>
                     </div>
                 </div>
