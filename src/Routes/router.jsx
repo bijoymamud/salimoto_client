@@ -16,7 +16,7 @@ import { HadithDetails } from "../Pages/Dashboard/AdminHome/HadidManagement/Hadi
 import VideoLibrary from "../Pages/Dashboard/VideoLibrary/VideoLibrary";
 import VideoDetails from "../Pages/Dashboard/VideoLibrary/VideoDetails";
 import VideoForm from "../Pages/Dashboard/VideoLibrary/VideoForm";
-import { MediaAds } from "../Pages/Dashboard/MediaAds";
+import { MediaAds } from "../Pages/Dashboard/AdminHome/MediaAdds/MediaAds";
 
 
 

@@ -41,7 +41,7 @@ export default function Category() {
                     </thead>
                     <tbody className="divide-y divide-gray-50">
                         {categories.map((item) => (
-                            <tr key={item.id} className="hover:bg-gray-50 transition-colors">
+                            <tr key={item.id} className="hover:bg-gray-50 hover:cursor-pointer transition-colors">
                                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-700">{item.name}</td>
                                 <td className="px-6 py-5 text-sm text-gray-500">
                                     <div className='flex flex-col gap-1'>

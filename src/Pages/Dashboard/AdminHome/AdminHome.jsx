@@ -27,8 +27,8 @@ export const AdminHome = () => {
             name: "Total Video Files",
             icon: <Video size={22} />,
             amount: 5,
-            text: "text-purple-500",
-            bg: "bg-[#8C60F51A]/30"
+            text: "text-purple-500/90",
+            bg: "bg-[#8C60F51A]/15"
         }
 
     ];

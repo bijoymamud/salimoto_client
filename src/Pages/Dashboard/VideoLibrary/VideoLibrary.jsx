@@ -57,7 +57,7 @@ export default function VideoLibrary() {
     hover:shadow-lg transition-all duration-300"
                     >
                         <div>
-                            <p className="text-xs text-gray-400 font-medium mb-1">
+                            <p className="text-[16px] text-gray-400 font-medium mb-1">
                                 {stat.label}
                             </p>
 
@@ -72,8 +72,7 @@ export default function VideoLibrary() {
                         </div>
 
                         <div
-                            className={`${stat.bg} ${stat.color} p-3 rounded-xl text-xl shadow-md 
-      `}
+                            className={`${stat.bg} ${stat.color} p-3 rounded-xl text-xl shadow-md`}
                         >
                             {stat.icon}
                         </div>
@@ -88,16 +87,16 @@ export default function VideoLibrary() {
                     <input
                         type="text"
                         placeholder="Search content..."
-                        className="w-full pl-12 pr-4 shadow-md py-3 bg-white border border-gray-100 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-cyan-100"
+                        className="w-full pl-12 pr-4 shadow-md py-4 bg-white border border-gray-100 rounded-full text-base focus:outline-none focus:ring-2 focus:ring-cyan-100"
                     />
                 </div>
-                <select className="px-6 py-3 shadow-md bg-white border border-gray-100 rounded-full text-sm text-gray-500 focus:outline-none">
+                <select className="px-6 py-4 shadow-md bg-white border border-gray-100 rounded-full text-base text-gray-500 focus:outline-none">
                     <option>Select a status</option>
                     <option>Published</option>
                     <option>Draft</option>
 
                 </select>
-                <select className="px-6 py-3 bg-white border shadow-md border-gray-100 rounded-full text-sm text-gray-500 focus:outline-none">
+                <select className="px-6 py-4 bg-white border shadow-md border-gray-100 rounded-full text-base text-gray-500 focus:outline-none">
                     <option>Select a category</option>
                     <option>Prayer Guide</option>
                     <option>Stories</option>

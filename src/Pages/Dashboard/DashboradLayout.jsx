@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Outlet, Link, useLocation } from "react-router-dom";
-import { GoImage } from "react-icons/go";
 import {
   LayoutDashboard,
   BookOpen,
